@@ -26,7 +26,7 @@ These are the available mock servers for the basket API.
 ## Documentation
 This is the available documentation for the basket API.
 
-- [Development](https://documenter.getpostman.com/view/10394726/SzYXXzVh?version=latest - This is the latest set of documentation complete with Run in Postman button, scripts, and examples.
+- [Development](https://documenter.getpostman.com/view/10394726/SzYXXzVh?version=latest) - This is the latest set of documentation complete with Run in Postman button, scripts, and examples.
 
 ## Support
 These are the support channels for the basket API.
