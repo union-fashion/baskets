@@ -10,7 +10,7 @@ These are all of the ways in which the basket API is organized.
 - **Workspace** - [Baskets](https://union-fashion.postman.co/workspaces/2990215b-b3e0-4431-b2ca-80cf01274a25/apis) (Requires Access) - The Postman workspace for managing Baskets.
 - **Organization** - [Union Fashion](https://github.com/union-fashion) - The GitHub organization where the basket API belongs.
 - **Repository** - [Union Fashion / baskets](https://github.com/union-fashion/baskets) - The GitHub repository dedicated to the basket API.
-- **API** - [Baskets](https://union-fashion.postman.co/apis/8cb5c720-6441-4cc9-8810-2e76e3cc3ecf?version=d10da5d7-0970-4d55-b237-8009d6ef3245 (Requires Access) - The machine readable contract for the API.
+- [**API**](https://union-fashion.postman.co/apis/8cb5c720-6441-4cc9-8810-2e76e3cc3ecf?version=d10da5d7-0970-4d55-b237-8009d6ef3245) (Requires Access) - The machine readable contract for the API.
 - **Collections** - Derivatives of the basket API contract.
     - [**Working**](https://union-fashion.postman.co/collections/10394726-9d7fe56b-ba01-4a02-aa8e-6d1b013ef380) - The collection meant for regular usage and playing around.
     - [**Documentation**](https://union-fashion.postman.co/collections/10394726-5d603948-a7a9-4b50-ae6c-04b79c4895ba) - The collection dedicated to publishing docs and mocks.
