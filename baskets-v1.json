@@ -1,0 +1,318 @@
+openapi: 3.0.0
+info:
+  title: Basket
+  description: This is the API for adding products to a basket for checking out and ordering.
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://example.com
+  variables: {}
+paths:
+  /basket/get:
+    get:
+      tags:
+      - Misc
+      summary: Get basket
+      description: Get the entire contents of a given basket.
+      operationId: GetBasket
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the basket to be returned.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: '{{$guid}}'
+      responses:
+        200:
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Basket'
+              example:
+                items:
+                - id: XYZ-JEAN-123
+                  quantity: 1
+                - id: ABC-TOP-789
+                  quantity: 3
+      deprecated: false
+  /basket/purchase:
+    get:
+      tags:
+      - Misc
+      summary: Purchase basket
+      description: Submit an order.
+      operationId: PurchaseBasket
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the basket to purchase.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: '{{$guid}}'
+      responses:
+        200:
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Purchasebasket'
+              example:
+                status: success
+      deprecated: false
+  /basket/add:
+    post:
+      tags:
+      - Misc
+      summary: Add
+      description: Add item(s) to a given basket.
+      operationId: Add
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the basket to modify.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: '{{$guid}}'
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddRequest'
+            example:
+              items:
+              - id: XYZ-JEAN-123
+                quantity: 2
+              - id: ABC-TOP-789
+                quantity: 1
+        required: true
+      responses:
+        200:
+          description: ''
+          headers: {}
+          content:
+            'application/json ':
+              schema:
+                $ref: '#/components/schemas/Add'
+              example:
+                status: success
+      deprecated: false
+  /basket/quantity:
+    patch:
+      tags:
+      - Misc
+      summary: Change quantity
+      description: Change the quantity of items/an item for a given basket.
+      operationId: ChangeQuantity
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the basket to modify.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: '{{$guid}}'
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangequantityRequest'
+            example:
+              items:
+              - id: XYZ-JEAN-123
+                quantity: 1
+              - id: ABC-TOP-789
+                quantity: 3
+        required: true
+      responses:
+        200:
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Changequantity'
+              example:
+                status: success
+      deprecated: false
+  /basket/remove:
+    delete:
+      tags:
+      - Misc
+      summary: Remove
+      description: Remove item(s) from a given basket.
+      operationId: Remove
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the basket to modify.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: '{{$guid}}'
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: application/json
+      responses:
+        200:
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Remove'
+              example:
+                status: success
+      deprecated: false
+components:
+  schemas:
+    Basket:
+      title: Basket
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+          description: ''
+      example:
+        items:
+        - id: XYZ-JEAN-123
+          quantity: 1
+        - id: ABC-TOP-789
+          quantity: 3
+    Item:
+      title: Item
+      required:
+      - id
+      - quantity
+      type: object
+      properties:
+        id:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+      example:
+        id: XYZ-JEAN-123
+        quantity: 1
+    Purchasebasket:
+      title: Purchasebasket
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+      example:
+        status: success
+    AddRequest:
+      title: AddRequest
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+          description: ''
+      example:
+        items:
+        - id: XYZ-JEAN-123
+          quantity: 2
+        - id: ABC-TOP-789
+          quantity: 1
+    Add:
+      title: Add
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+      example:
+        status: success
+    ChangequantityRequest:
+      title: ChangequantityRequest
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+          description: ''
+      example:
+        items:
+        - id: XYZ-JEAN-123
+          quantity: 1
+        - id: ABC-TOP-789
+          quantity: 3
+    Changequantity:
+      title: Changequantity
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+      example:
+        status: success
+    Remove:
+      title: Remove
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+      example:
+        status: success
+tags:
+- name: Basket
+  description: 'The resources for working with a basket.'
